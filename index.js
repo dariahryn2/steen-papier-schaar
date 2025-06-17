@@ -6,11 +6,35 @@ const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 let playerScore = 0;
 let computerScore = 0;
+let player1Choice = null;
+let player2Choice = null;
 
 //sounds
 const winSound = new Audio('sounds/win1.wav');
 const loseSound = new Audio('sounds/lost.mp3');
-const tieSound = new Audio('sounds/tie.mp3');
+
+function selectMode(mode) {
+    document.getElementById('mode-selection').style.display = 'none';
+
+    if (mode === 'pvc') {
+        document.getElementById('pvc-mode').style.display = 'block';
+    } else if (mode === 'pvp') {
+        document.getElementById('pvp-mode').style.display = 'block';
+    }
+
+    document.getElementById('resultDisplay').textContent = '';
+}
+
+function goBack() {
+    document.getElementById('pvc-mode').style.display = 'none';
+    document.getElementById('pvp-mode').style.display = 'none';
+    document.getElementById('mode-selection').style.display = 'block';
+
+    // Reset choices
+    player1Choice = null;
+    player2Choice = null;
+    document.getElementById('resultDisplay').textContent = '';
+}
 
 
 function playGame(playerChoice){
@@ -19,7 +43,6 @@ function playGame(playerChoice){
 
     if(playerChoice === computerChoice){
         result = "IT'S A TIE!";
-        tieSound.play();
 
     }
     else{

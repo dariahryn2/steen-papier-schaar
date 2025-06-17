@@ -13,11 +13,11 @@ h1{
     color: hsl(0, 0%, 20%);
 }
 
-.choices{
+#pvc-mode{
     margin-bottom: 30px;
 }
 
-.choices button{
+#pvc-mode button{
     font-size: 7.5rem;
     min-width: 160px;
     margin: 0 10px;
@@ -27,7 +27,7 @@ h1{
     transition: background-color 0.5s ease;
 }
 
-.choices button:hover{
+#pvc-mode button:hover{
     background-color: hsl(200, 100%, 70%);
 }
 
@@ -70,4 +70,5 @@ h1{
   .pop {
     animation: pop 0.5s ease;
   }
+  
   
