@@ -4,6 +4,7 @@ const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+
 let playerScore = 0;
 let computerScore = 0;
 let player1Choice = null;
@@ -12,9 +13,14 @@ let player2Choice = null;
 //sounds
 const winSound = new Audio('sounds/win1.wav');
 const loseSound = new Audio('sounds/lost.mp3');
+const wplayer1Sound = new Audio('sounds/player-1-wins.mp3');
+const wplayer2Sound = new Audio('sounds/player-2-wins.mp3');
 
 function selectMode(mode) {
     document.getElementById('mode-selection').style.display = 'none';
+    back.style.display = "block";
+    //document.getElementById('back').style.display = 'block';
+
 
     if (mode === 'pvc') {
         document.getElementById('pvc-mode').style.display = 'block';
@@ -29,11 +35,20 @@ function goBack() {
     document.getElementById('pvc-mode').style.display = 'none';
     document.getElementById('pvp-mode').style.display = 'none';
     document.getElementById('mode-selection').style.display = 'block';
+    back.style.display = "none";
+    //document.getElementById('back').style.display = 'none';
 
     // Reset choices
     player1Choice = null;
     player2Choice = null;
     document.getElementById('resultDisplay').textContent = '';
+    playerDisplay.textContent = 'PLAYER: ';
+    computerDisplay.textContent = 'COMPUTER: ';
+    //Reset scores
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreDisplay.textContent = '0';
+    computerScoreDisplay.textContent = '0';
 }
 
 
@@ -88,6 +103,68 @@ function playGame(playerChoice){
 
 }
 
+function setPlayerChoice(choice, playerNumber) {
+    if (playerNumber === 1) {
+      player1Choice = choice;
+      resultDisplay.textContent = "Waiting for Player 2...";
+      resultDisplay.classList.remove("greenText", "redText"); // Make sure "Waiting..." text is always black
+    } else if (playerNumber === 2) {
+      player2Choice = choice;
+    }
+  
+    // If both players have chosen
+    if (player1Choice && player2Choice) {
+      let result = "";
+  
+      if (player1Choice === player2Choice) {
+        result = "IT'S A TIE!";
+      } else {
+        switch (player1Choice) {
+          case "rock":
+            result = (player2Choice === "scissors") ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+            break;
+          case "paper":
+            result = (player2Choice === "rock") ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+            break;
+          case "scissors":
+            result = (player2Choice === "paper") ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
+            break;
+        }
+      }
+  
+      // Display choices
+      playerDisplay.textContent = `Player 1: ${player1Choice}`;
+      computerDisplay.textContent = `Player 2: ${player2Choice}`;
+      resultDisplay.textContent = result;
+  
+      // Add pop animation
+      resultDisplay.classList.remove("pop");
+      void resultDisplay.offsetWidth;
+      resultDisplay.classList.add("pop");
+  
+      // Styling
+      resultDisplay.classList.remove("greenText", "redText");
+  
+      if (result.includes("PLAYER 1 WINS")) {
+        resultDisplay.classList.add("greenText");
+        playerScore++;
+        playerScoreDisplay.textContent = playerScore;
+        showConfetti();
+        wplayer1Sound.play();
+      } else if (result.includes("PLAYER 2 WINS")) {
+        resultDisplay.classList.add("redText");
+        computerScore++;
+        computerScoreDisplay.textContent = computerScore;
+        wplayer2Sound.play();
+      }
+  
+      // Reset choices for next round
+      player1Choice = null;
+      player2Choice = null;
+    }
+  }
+  
+
 function showConfetti() {
     // Left side
     confetti({
@@ -104,4 +181,24 @@ function showConfetti() {
       origin: { x: 1 }
     });
   }
+
+  // Handle button clicks for PvC mode with a single event listener
+document.getElementById('pvc-mode').addEventListener('click', function(e) {
+    const choice = e.target.dataset.choice;
+    if (choice) {
+      playGame(choice);
+    }
+  });
+
+  // Handle PvP mode clicks with one listener
+document.getElementById('pvp-mode').addEventListener('click', function(e) {
+    const choice = e.target.dataset.choice;
+    const parent = e.target.closest('.pvp-buttons');
+    if (choice && parent) {
+      const player = parseInt(parent.dataset.player);
+      setPlayerChoice(choice, player);
+    }
+  });
+  
+  
   

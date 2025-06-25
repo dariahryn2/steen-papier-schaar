@@ -10,6 +10,9 @@
 <body>
 
     <h1>Rock - Paper - Scissors</h1>
+    <button id="back" onclick="goBack()" style="display: none;">← Go back</button>
+
+
     
     <!-- MODE SELECTION -->
 <div id="mode-selection">
@@ -20,25 +23,32 @@
 
 <!-- PLAYER VS COMPUTER -->
 <div id="pvc-mode" style="display: none;">
-  <button onclick="playGame('rock')">👊</button>
-    <button onclick="playGame('paper')">✋</button>
-    <button onclick="playGame('scissors')">✌</button>
-</div> 
+  <!--<button class="back" onclick="goBack()">← Back</button>-->
+  <button data-choice="rock">👊</button>
+  <button data-choice="paper">✋</button>
+  <button data-choice="scissors">✌</button>
+</div>
 
 <!-- PLAYER VS PLAYER -->
 <div id="pvp-mode" style="display: none;">
+  <!--<button class="back" onclick="goBack()">← Back</button>-->
   <h2>Player 1</h2>
-  <button onclick="setPlayerChoice('rock', 1)">Rock</button>
-  <button onclick="setPlayerChoice('paper', 1)">Paper</button>
-  <button onclick="setPlayerChoice('scissors', 1)">Scissors</button>
+  <div class="pvp-buttons" data-player="1">
+    <button data-choice="rock">👊</button>
+    <button data-choice="paper">✋</button>
+    <button data-choice="scissors">✌</button>
+  </div>
 
   <h2>Player 2</h2>
-  <button onclick="setPlayerChoice('rock', 2)">Rock</button>
-  <button onclick="setPlayerChoice('paper', 2)">Paper</button>
-  <button onclick="setPlayerChoice('scissors', 2)">Scissors</button>
+  <div class="pvp-buttons" data-player="2">
+    <button data-choice="rock">👊</button>
+    <button data-choice="paper">✋</button>
+    <button data-choice="scissors">✌</button>
+  </div>
 
-  <button onclick="goBack()">🔙 Back</button>
+  
 </div>
+
     
   
   <h2 id="resultDisplay"></h2>

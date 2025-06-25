@@ -1,4 +1,5 @@
 body{
+    position: relative;
     background-image: url('');
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -70,5 +71,61 @@ h1{
   .pop {
     animation: pop 0.5s ease;
   }
+
+  #back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Common button style */
+.pvp-buttons button {
+    font-size: 3rem; /* Smaller than pvc-mode */
+    min-width: 100px;
+    margin: 0 5px;
+    border-radius: 250px;
+    background-color: hsl(200, 100%, 50%);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    border: none;
+  }
+  
+  /* Hover effect */
+  .pvp-buttons button:hover {
+    background-color: hsl(200, 100%, 70%);
+  }
+
+  #mode-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* space between buttons */
+    margin: 30px 0;
+  }
+  
+  #mode-selection button {
+    font-size: 2rem;
+    padding: 15px 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: hsl(220, 100%, 60%);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 250px;
+    text-align: center;
+  }
+  
+  #mode-selection button:hover {
+    background-color: hsl(220, 100%, 70%);
+  }
+  
   
   
