@@ -12,7 +12,6 @@
     <h1>Rock - Paper - Scissors</h1>
     <button id="back" onclick="goBack()" style="display: none;">← Go back</button>
 
-
     
     <!-- MODE SELECTION -->
 <div id="mode-selection">
@@ -23,7 +22,6 @@
 
 <!-- PLAYER VS COMPUTER -->
 <div id="pvc-mode" style="display: none;">
-  <!--<button class="back" onclick="goBack()">← Back</button>-->
   <button data-choice="rock">👊</button>
   <button data-choice="paper">✋</button>
   <button data-choice="scissors">✌</button>
@@ -31,7 +29,7 @@
 
 <!-- PLAYER VS PLAYER -->
 <div id="pvp-mode" style="display: none;">
-  <!--<button class="back" onclick="goBack()">← Back</button>-->
+
   <h2>Player 1</h2>
   <div class="pvp-buttons" data-player="1">
     <button data-choice="rock">👊</button>
@@ -46,25 +44,22 @@
     <button data-choice="scissors">✌</button>
   </div>
 
-  
 </div>
 
     
   
   <h2 id="resultDisplay"></h2>
-  
+  <div id="playerDisplay">PLAYER: </div>
+  <div id="computerDisplay">COMPUTER: </div>
+  <div id="resultDisplay"></div>
 
-    <div id="playerDisplay">PLAYER: </div>
-    <div id="computerDisplay">COMPUTER: </div>
-    <div id="resultDisplay"></div>
+  <div class="scoreDisplay">Player Score: 
+      <span id="playerScoreDisplay">0</span>
+  </div>
 
-    <div class="scoreDisplay">Player Score: 
-        <span id="playerScoreDisplay">0</span>
-    </div>
-
-    <div class="scoreDisplay">Computer Score: 
-        <span id="computerScoreDisplay">0</span>
-    </div>
+  <div class="scoreDisplay">Computer Score: 
+      <span id="computerScoreDisplay">0</span>
+  </div>
     
     <script src="index.js"></script>
 </body>
